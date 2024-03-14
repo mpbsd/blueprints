@@ -118,7 +118,7 @@ discipline = {
             "Espaços compactos: Compacidade na reta",
             "Espaços compactos: Espaços métricos compactos",
             "Espaços compactos: Produtos de dois fatores, um dos quais é compacto",
-            "Espaços compactos: Uma base para $TOPIC(K,M)$",
+            "Espaços compactos: Uma base para C(K,M)",
             "Espaços compactos: Caracterizações de espaços compactos",
             "Espaços compactos: Produtos cartesianos de espaços compactos",
             "Espaços compactos: Continuidade uniforme",
@@ -132,11 +132,16 @@ discipline = {
             3: timedelta(days=2),
             5: timedelta(days=3),
         },  # }}}
+        "fmean": {  # {{{
+            1: date.fromisoformat("2024-04-21"),
+            2: date.fromisoformat("2024-06-21"),
+            3: date.fromisoformat("2024-07-15"),
+        },  # }}}
     },
 }
 
 
-def pprint(DATE, TOPIC):
+def pprint(DATE, TOPIC, outfile):  # {{{
     M = [
         "Jan",
         "Fev",
@@ -156,30 +161,32 @@ def pprint(DATE, TOPIC):
     m = M[DATE.month]
     d = "%02d" % DATE.day
     w = W[DATE.isoweekday() % 7]
-    R = f"({w}) {d}/{m}/{y}: {TOPIC}"
-    print(R)
+    R = f"\\item[({w}) {d}/{m}/{y}] {TOPIC}"
+    print(R, file=outfile)
+# }}}
 
 
-def printcrono(discipline, opening):
+def pcrono(opening, discipline, outfile):  # {{{
     DATE = opening
     for TOPIC in discipline["crono"]:
         if DATE in lazy_days:
             while DATE in lazy_days:
                 DATE += discipline["shift"][DATE.isoweekday() % 7]
-        pprint(DATE, TOPIC)
+        pprint(DATE, TOPIC, outfile)
         DATE += discipline["shift"][DATE.isoweekday() % 7]
+# }}}
 
 
-def beancount(discipline):
+def beancount(discipline):  # {{{
     print(2 * len(discipline["crono"]))
+# }}}
 
 
 def main():
     opening = date.fromisoformat("2024-03-18")
-    printcrono(discipline["IME0388"], opening)
-    beancount(discipline["IME0388"])
-    # printcrono(discipline["IME0415"], opening)
-    # beancount(discipline["IME0415"])
+    with open("blueprint.tex", "w") as texfile:
+        pcrono(opening, discipline["IME0415"], texfile)
+        beancount(discipline["IME0415"])
 
 
 if __name__ == "__main__":
