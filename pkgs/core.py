@@ -13,6 +13,47 @@ lazy_days = [
 ]  # }}}
 
 discipline = {
+    "IME0010": {  # Álgebra Linear {{{1
+        "dname": "Álgebra Linear",
+        "crono": [  # {{{2
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Sistemas lineares e matrizes",
+            "Espaços Vetoriais",
+            "Espaços Vetoriais",
+            "Espaços Vetoriais",
+            "Espaços Vetoriais",
+            "Espaços Vetoriais",
+            "Transformações lineares",
+            "Transformações lineares",
+            "Transformações lineares",
+            "Transformações lineares",
+            "Transformações lineares",
+            "Autovalores e autovetores",
+            "Autovalores e autovetores",
+            "Autovalores e autovetores",
+            "Autovalores e autovetores",
+            "Autovalores e autovetores",
+            "Espaços com produto interno",
+            "Espaços com produto interno",
+            "Espaços com produto interno",
+            "Espaços com produto interno",
+            "Espaços com produto interno",
+            "Avaliações",
+            "Avaliações",
+            "Avaliações",
+        ],  # }}}
+        "shift": {  # {{{2
+            3: timedelta(days=2),
+            5: timedelta(days=5),
+        },  # }}}
+    },  # }}}
     "IME0379": {  # Cálculo 1B {{{1
         "dname": "Cálculo 1B",
         "crono": [  # {{{2
@@ -188,10 +229,10 @@ discipline = {
             "Teorema Fundamental da Teoria de Galois",
             "Teorema Fundamental da Teoria de Galois",
             "Teorema Fundamental da Teoria de Galois",
-            "Teorema Fundamental da Teoria de Galois",
             "Revisão de grupos solúveis e solubilidade por radicais",
             "Revisão de grupos solúveis e solubilidade por radicais",
             "Revisão de grupos solúveis e solubilidade por radicais",
+            "Avaliação",
             "Corpos finitos",
             "Corpos finitos",
             "Corpos finitos",
@@ -204,7 +245,6 @@ discipline = {
             "Norma e traço",
             "Apresentação de exercícios",
             "Apresentação de exercícios",
-            "Avaliação",
             "Avaliação",
         ],  # }}}
         "shift": {  # {{{2
@@ -270,7 +310,7 @@ def beancount(discipline):  # {{{
 def main():
     opening = date.fromisoformat("2025-03-06")
 
-    for dkey in ["IME0379", "IME0416"]:
+    for dkey in ["IME0010", "IME0379", "IME0416"]:
         dscpln = discipline[dkey]
         with open(f"{dkey}.tex", "w") as texfile:
             pcrono(opening, dscpln, texfile)
