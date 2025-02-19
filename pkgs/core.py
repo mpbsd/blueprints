@@ -1,27 +1,63 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 from datetime import date, timedelta
 
-
-lazy_days = [  # {{{
-    date.fromisoformat("2024-03-29"),  # paixao de cristo
-    date.fromisoformat("2024-04-08"),  # vii coloquio do centro-oeste
-    date.fromisoformat("2024-04-10"),  # vii coloquio do centro-oeste
-    date.fromisoformat("2024-04-12"),  # vii coloquio do centro-oeste
-    date.fromisoformat("2024-04-21"),  # tiradentes
-    date.fromisoformat("2024-05-01"),  # dia do trabalhador
-    date.fromisoformat("2024-05-24"),  # padroeira de goiania
-    date.fromisoformat("2024-05-30"),  # corpus christi
-    date.fromisoformat("2024-05-31"),  # ponto facultativo corpus christi
+# lazy_days {{{
+lazy_days = [
+    date.fromisoformat("2025-04-18"),  # Paixão de Cristo
+    date.fromisoformat("2025-04-21"),  # Tiradentes
+    date.fromisoformat("2025-05-01"),  # dia mundial do trabalho
+    date.fromisoformat("2025-05-24"),  # Padroeira de Goiânia
+    date.fromisoformat("2025-06-19"),  # Corpus Christi
 ]  # }}}
 
-
 discipline = {
-    "IME0388": {
+    "IME0379": {  # Cálculo 1B {{{1
+        "dname": "Cálculo 1B",
+        "crono": [  # {{{2
+            "Apresentação da disciplina",
+            "Funções: definição e domínio",
+            "Funções definidas por partes",
+            "Funções polinomiais e racionais",
+            "Funções trigonométricas: gráficos e propriedades",
+            "Propriedades e composição de funções",
+            "Funções exponencial e logarítmica: gráficos e propriedades",
+            "Os problemas da tangente e da velocidade",
+            "Definição de limite e limites laterais",
+            "Limites infinitos",
+            "Propriedades e cálculos de limites",
+            "Limites no infinito",
+            "Continuidade",
+            "Derivada: definição, velocidade instantânea e reta tangente",
+            "Derivada como função. Diferenciabilidade e continuidade",
+            "Aula de exercícios",
+            "Avaliação 1",
+            "Derivada de funções polinomiais e exponenciais",
+            "Regras do produto e do quociente",
+            "Derivada de funções trigonométricas",
+            "Regra da cadeia",
+            "Derivada de funções logarítmicas",
+            "Valores Máximo e mínimo",
+            "Intervalos de crescimento e decrescimento",
+            "Concavidade e pontos de inflexão",
+            "Formas indeterminadas e regra de L’Hospital",
+            "Esboço de curvas",
+            "Esboço de curvas - Continuação",
+            "Problemas de otimização",
+            "Problemas de otimização - Continuação",
+            "Antiderivada",
+            "Aula de exercícios",
+            "Avaliação 2",
+        ],  # }}}
+        "shift": {  # {{{2
+            3: timedelta(days=2),
+            5: timedelta(days=5),
+        },  # }}}
+    },  # }}}
+    "IME0388": {  # Análise Real {{{1
         "dname": "Análise Real 1",
-        "crono": [  # {{{
+        "crono": [  # {{{2
             "Apresentação da disciplina",
             "Noções de Conjuntos",
             "Noções de Funções",
@@ -70,15 +106,15 @@ discipline = {
             "Avaliação 3",
             "Entrega de resultados",
         ],  # }}}
-        "shift": {  # {{{
+        "shift": {  # {{{2
             1: timedelta(days=2),
             3: timedelta(days=2),
             5: timedelta(days=3),
         },  # }}}
-    },
-    "IME0415": {
+    },  # }}}
+    "IME0415": {  # Espaços Métricos {{{1
         "dname": "Espaços Métricos",
-        "crono": [  # {{{
+        "crono": [  # {{{2
             "Espaços métricos: Definição e exemplos",
             "Espaços métricos: Bolas e esferas",
             "Espaços métricos: Conjuntos limitados",
@@ -127,16 +163,60 @@ discipline = {
             "Espaços compactos: O Teorema de Stone-Weierstrass",
             "Avaliação 3",
         ],  # }}}
-        "shift": {  # {{{
+        "shift": {  # {{{2
             1: timedelta(days=2),
             3: timedelta(days=2),
             5: timedelta(days=3),
         },  # }}}
-    },
+    },  # }}}
+    "IME0416": {  # Teoria de Galois {{{1
+        "dname": "Teoria de Galois",
+        "crono": [  # {{{2
+            "Corpos e Corpo de decomposição de um polinômio",
+            "Corpos e Corpo de decomposição de um polinômio",
+            "Revisão de extensões de corpos",
+            "Extensões normais e separáveis",
+            "Extensões normais e separáveis",
+            "Grupos de Galois e extensões galoisianas",
+            "Grupos de Galois e extensões galoisianas",
+            "Grupos de Galois e extensões galoisianas",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Teorema Fundamental da Teoria de Galois",
+            "Revisão de grupos solúveis e solubilidade por radicais",
+            "Revisão de grupos solúveis e solubilidade por radicais",
+            "Revisão de grupos solúveis e solubilidade por radicais",
+            "Corpos finitos",
+            "Corpos finitos",
+            "Corpos finitos",
+            "Corpos finitos",
+            "Extensões ciclotômicas",
+            "Extensões ciclotômicas",
+            "Extensões ciclotômicas",
+            "Construções por régua e compasso",
+            "Teorema Fundamental da Álgebra",
+            "Norma e traço",
+            "Apresentação de exercícios",
+            "Apresentação de exercícios",
+            "Avaliação",
+            "Avaliação",
+        ],  # }}}
+        "shift": {  # {{{2
+            2: timedelta(days=2),
+            4: timedelta(days=5),
+        },  # }}}
+    },  # }}}
 }
 
 
-def pprint(DATE, TOPIC, outfile):  # {{{
+# def pprint {{{
+def pprint(DATE, TOPIC, outfile):
     M = {
         1: "Jan",
         2: "Fev",
@@ -163,8 +243,12 @@ def pprint(DATE, TOPIC, outfile):  # {{{
 # }}}
 
 
-def pcrono(opening, discipline, outfile):  # {{{
+# def pcrono {{{
+def pcrono(opening, discipline, outfile):
     DATE = opening
+    if (DATE.isoweekday() % 7) not in discipline["shift"].keys():
+        while (DATE.isoweekday() % 7) not in discipline["shift"].keys():
+            DATE += timedelta(days=1)
     for TOPIC in discipline["crono"]:
         if DATE in lazy_days:
             while DATE in lazy_days:
@@ -184,10 +268,13 @@ def beancount(discipline):  # {{{
 
 
 def main():
-    opening = date.fromisoformat("2024-03-18")
-    with open("blueprint.tex", "w") as texfile:
-        pcrono(opening, discipline["IME0388"], texfile)
-        beancount(discipline["IME0388"])
+    opening = date.fromisoformat("2025-03-06")
+
+    for dkey in ["IME0379", "IME0416"]:
+        dscpln = discipline[dkey]
+        with open(f"{dkey}.tex", "w") as texfile:
+            pcrono(opening, dscpln, texfile)
+            beancount(dscpln)
 
 
 if __name__ == "__main__":
