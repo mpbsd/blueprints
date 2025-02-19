@@ -6,6 +6,7 @@ black:
 
 clean:
 	find . -type d -name __pycache__ | xargs rm -rf
+	find . -type f -name "*.tex" | xargs rm -rf
 
 ready:
 	python3 -m venv venv; \
