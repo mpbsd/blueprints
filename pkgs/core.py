@@ -14,7 +14,7 @@ def main():
     }
 
     for code in payload.keys():
-        Blueprint(opening, code, payload[code]).save()
+        Blueprint(opening, code, payload[code]).save
 
 
 if __name__ == "__main__":

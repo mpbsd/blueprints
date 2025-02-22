@@ -1,3 +1,4 @@
+import os
 from datetime import date, timedelta
 
 from pkgs.cron import blueprints
@@ -43,34 +44,37 @@ class Blueprint:
     }
 
     def __init__(self, opening, code, shift):
-        self.opening = date.fromisoformat(opening)
-        self.code = code
-        self.schedule = self.SCHDL[shift]
+        self.__open = date.fromisoformat(opening)
+        self.__code = code
+        self.__list = self.SCHDL[shift]
+        self.cron = self.__cron()
+        self.ltex = self.__ltex()
+        self.save = self.__save()
 
-    def lazy(self):
+    def __lazy(self):
         return [date.fromisoformat(x) for x in dates]
 
-    def cron(self):
+    def __cron(self):
         cron = []
-        date = self.opening
-        if date.isoweekday() not in self.schedule.keys():
-            while date.isoweekday() not in self.schedule.keys():
+        date = self.__open
+        if date.isoweekday() not in self.__list.keys():
+            while date.isoweekday() not in self.__list.keys():
                 date += timedelta(days=1)
-        for bp in blueprints[self.code]["cron"]:
+        for bp in blueprints[self.__code]["cron"]:
             CONTENT = bp[0]
             HOWMANY = bp[1] // 2
-            if date in self.lazy():
-                while date in self.lazy():
-                    date += self.schedule[date.isoweekday()]
+            if date in self.__lazy():
+                while date in self.__lazy():
+                    date += self.__list[date.isoweekday()]
             cron.append((date, CONTENT, HOWMANY * 2))
             while HOWMANY > 0:
-                date += self.schedule[date.isoweekday()]
+                date += self.__list[date.isoweekday()]
                 HOWMANY -= 1
         return cron
 
-    def show(self):
+    def __ltex(self):
         show = []
-        for bp in self.cron():
+        for bp in self.__cron():
             date, content, howmany = bp
             w = self.WEEKD[f"{date.isoweekday():02d}"]
             y = date.year
@@ -81,10 +85,18 @@ class Blueprint:
             show.append(r)
         return show
 
-    def save(self):
-        with open(f"brew/{self.code}.tex", "w") as tex_file:
-            for bp in self.show():
+    def __brew(self):
+        brew = os.path.expanduser(r"~/projects/blueprints/brew")
+        if os.path.isdir(brew):
+            os.system(r"find brew -type f -name '*.tex' | xargs rm -rf")
+        else:
+            os.system(f"mkdir -p {brew}")
+
+    def __save(self):
+        self.__brew()
+        with open(f"brew/{self.__code}.tex", "w") as tex_file:
+            for bp in self.__ltex():
                 print(bp, file=tex_file)
 
     def __repr__(self):
-        return f"{self.code}: {blueprints[self.code]['name']}"
+        return f"{self.__code}: {blueprints[self.__code]['name']}"
