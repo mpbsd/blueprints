@@ -85,15 +85,13 @@ class Blueprint:
             show.append(r)
         return show
 
-    def __brew(self):
+    def __mdir(self):
         brew = os.path.expanduser(r"~/projects/blueprints/brew")
-        if os.path.isdir(brew):
-            os.system(r"find brew -type f -name '*.tex' | xargs rm -rf")
-        else:
+        if not os.path.isdir(brew):
             os.system(f"mkdir -p {brew}")
 
     def __save(self):
-        self.__brew()
+        self.__mdir()
         with open(f"brew/{self.__code}.tex", "w") as tex_file:
             for bp in self.__ltex():
                 print(bp, file=tex_file)

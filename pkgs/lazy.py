@@ -1,4 +1,4 @@
-# list of dates in iso format
+# dates in iso format
 dates = [
     "2025-04-18",  # Paixão de Cristo
     "2025-04-21",  # Tiradentes
