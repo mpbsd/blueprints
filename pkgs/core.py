@@ -5,7 +5,7 @@ from pkgs.blue import Blueprint
 
 
 def main():
-    opening = "2025-03-06"
+    opening = "2025-03-07"
 
     payload = {
         "IME0010": "46",

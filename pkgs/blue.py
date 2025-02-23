@@ -49,6 +49,7 @@ class Blueprint:
         self.__list = self.SCHDL[shift]
         self.cron = self.__cron()
         self.ltex = self.__ltex()
+        self.bean = self.__bean()
         self.save = self.__save()
 
     def __lazy(self):
@@ -61,15 +62,15 @@ class Blueprint:
             while date.isoweekday() not in self.__list.keys():
                 date += timedelta(days=1)
         for bp in blueprints[self.__code]["cron"]:
-            CONTENT = bp[0]
-            HOWMANY = bp[1] // 2
+            content = bp[0]
+            howmany = bp[1] // 2
             if date in self.__lazy():
                 while date in self.__lazy():
                     date += self.__list[date.isoweekday()]
-            cron.append((date, CONTENT, HOWMANY * 2))
-            while HOWMANY > 0:
+            cron.append((date, content, howmany * 2))
+            while howmany > 0:
                 date += self.__list[date.isoweekday()]
-                HOWMANY -= 1
+                howmany -= 1
         return cron
 
     def __ltex(self):
@@ -84,6 +85,9 @@ class Blueprint:
             r = f"\\item[{w} {d:02d}/{m}/{y}] {content} ({howmany} {s})"
             show.append(r)
         return show
+
+    def __bean(self):
+        return sum([x[1] for x in blueprints[self.__code]["cron"]])
 
     def __mdir(self):
         brew = os.path.expanduser(r"~/projects/blueprints/brew")
