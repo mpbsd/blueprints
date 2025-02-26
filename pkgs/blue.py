@@ -23,23 +23,23 @@ class Blueprint:
     }
 
     WEEKD = {
+        "00": "Do",
         "01": "Se",
         "02": "Te",
         "03": "Qa",
         "04": "Qi",
         "05": "Sx",
         "06": "Sa",
-        "07": "Do",
     }
 
     SCHDL = {
-        "24": {2: timedelta(days=2), 4: timedelta(days=5)},
-        "35": {3: timedelta(days=2), 5: timedelta(days=5)},
-        "46": {4: timedelta(days=2), 6: timedelta(days=5)},
+        "24": {1: timedelta(days=2), 3: timedelta(days=5)},
+        "35": {2: timedelta(days=2), 4: timedelta(days=5)},
+        "46": {3: timedelta(days=2), 5: timedelta(days=5)},
         "246": {
-            2: timedelta(days=2),
-            4: timedelta(days=2),
-            6: timedelta(days=3),
+            1: timedelta(days=2),
+            3: timedelta(days=2),
+            5: timedelta(days=3),
         },
     }
 
@@ -58,18 +58,18 @@ class Blueprint:
     def __cron(self):
         cron = []
         date = self.__open
-        if date.isoweekday() not in self.__list.keys():
-            while date.isoweekday() not in self.__list.keys():
+        if (date.isoweekday() % 7) not in self.__list.keys():
+            while (date.isoweekday() % 7) not in self.__list.keys():
                 date += timedelta(days=1)
         for bp in blueprints[self.__code]["cron"]:
             content = bp[0]
             howmany = bp[1] // 2
             if date in self.__lazy():
                 while date in self.__lazy():
-                    date += self.__list[date.isoweekday()]
+                    date += self.__list[(date.isoweekday() % 7)]
             cron.append((date, content, howmany * 2))
             while howmany > 0:
-                date += self.__list[date.isoweekday()]
+                date += self.__list[(date.isoweekday() % 7)]
                 howmany -= 1
         return cron
 
@@ -77,7 +77,7 @@ class Blueprint:
         show = []
         for bp in self.__cron():
             date, content, howmany = bp
-            w = self.WEEKD[f"{date.isoweekday():02d}"]
+            w = self.WEEKD[f"{(date.isoweekday() % 7):02d}"]
             y = date.year
             m = self.MONTH[f"{date.month:02d}"]
             d = date.day

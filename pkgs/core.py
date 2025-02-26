@@ -15,6 +15,7 @@ def main():
 
     for code in payload.keys():
         Blueprint(opening, code, payload[code]).save
+        print(Blueprint(opening, code, payload[code]).bean)
 
 
 if __name__ == "__main__":
