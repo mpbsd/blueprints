@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from pkgs.blue import Blueprint
+from .blue import Blueprint
 
 
 def main():
-    opening = "2025-03-07"
+    opening = "2025-08-11"
 
     payload = {
-        "IME0010": "46",
-        "IME0379": "46",
-        "IME0416": "35",
+        "IME0411": "24",
     }
 
     for code in payload.keys():

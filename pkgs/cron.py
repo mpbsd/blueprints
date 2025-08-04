@@ -182,4 +182,20 @@ blueprints = {
         ],
     },
     # }}}
+    # IME0411 {{{
+    "IME0411": {
+        "name": "Álgebra Linear II",
+        "cron": [
+            ("Transformações Lineares", 10),
+            ("Subespaços invariantes", 10),
+            ("O teorema da decomposição primária", 6),
+            ("Decomposições cíclicas, Forma Racional e Forma Canônica de Jordan", 10),
+            ("Espaços com produto interno", 6),
+            ("Operadores unitários e Operadores Normais", 6),
+            ("Teorema Espectral", 4),
+            ("Formas bilineares", 6),
+            ("Avaliações", 6),
+        ],
+    },
+    # }}}
 }
