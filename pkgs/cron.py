@@ -182,7 +182,7 @@ blueprints = {
         ],
     },
     # }}}
-    # IME0411 {{{
+    # IME0411: Álgebra Linear II {{{
     "IME0411": {
         "name": "Álgebra Linear II",
         "cron": [
